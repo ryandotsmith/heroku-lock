@@ -1,3 +1,4 @@
+raise "here"
 class Heroku::Client
 
   def process(method, uri, extra_headers={}, payload=nil)
