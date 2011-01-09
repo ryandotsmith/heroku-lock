@@ -1,14 +1,10 @@
-raise "here"
 class Heroku::Client
 
-  def process(method, uri, extra_headers={}, payload=nil)
-    raise "no command for you!"
-    headers  = heroku_headers.merge(extra_headers)
-    args     = [method, payload, headers].compact
-    response = resource(uri).send(*args)
-
-    extract_warning(response)
-    response
+  def process_with_lock(method, uri, extra_headers={}, payload=nil)
+    error "app is locked."
   end
+
+  alias_method :process_with_out_lock, :process
+  alias_method :process, :process_with_lock
 
 end
